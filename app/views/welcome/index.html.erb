@@ -10,20 +10,67 @@
   </div>
 </nav>
 
-<div class="container jumbotron">
+<div class="container">
+
+<div class="jumbotron">
   <h1>gCamp</h1>
   <p>Your life, organized.</p>
 </div>
 
+
 <div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="..." alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+  <div class="col-md-4">
+    <p class="lead">
+    <%=image_tag("tablet_work.jpg", class: "img-responsive")%>
+    </p>
+  </div>
+
+  <div class="col-md-4">
+    <p class="lead">
+    <%=image_tag("scattered_papers.jpg", class: "img-responsive")%>
+    </p>
+  </div>
+
+  <div class="col-md-4">
+    <p class="lead">
+    <%=image_tag("working_at_desk.jpg", class: "img-responsive")%>
+  </p> 
+  </div>
+
+<div class"row">
+  <div class="col-md-4">
+    <div class="panel panel-primary panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Tasks</h3>
+      </div>
+      <div class="panel-body">
+        Grouped by projects and lists. Just the way you like'em.
       </div>
     </div>
   </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-primary panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Permissions</h3>
+      </div>
+      <div class="panel-body">
+        Fine-grained permissions
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-primary panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Comments</h3>
+      </div>
+      <div class="panel-body">
+        <li>Comments on tasks and documents</li>
+        <li>Get email notifications</li>
+      </div>
+    </div>
+  </div>
+
+</div>
 </div>
