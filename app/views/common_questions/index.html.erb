@@ -1,0 +1,25 @@
+<div class="container">
+
+  <div class="page-header">
+    <h1>Frequently Asked Questions</h1>
+  </div>
+
+
+  <ul>
+    <% @faqs.each do |faq|%>
+    <li> <a href="#<%= faq.slug%>"><%= faq.question %> </a></li>
+    <%end%>
+  </ul>
+
+
+
+    <% @faqs.each do |faq| %>
+    <div>
+      <a name="<%= faq.slug%>"></a>
+      <p><div class = 'h3'><%= faq.question %></div></p>
+      <p><%= faq.answer %></p>
+      <a href = "#Top">Top</a>
+      <%end%>
+    </div>
+
+  </div>
