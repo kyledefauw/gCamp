@@ -1,0 +1,19 @@
+<div class="container">
+
+  <h1>New Task</h1>
+
+  <%= form_for @task do |f| %>
+
+    <%= f.label :description %>
+    <br>
+    <%= f.text_field :description %>
+    <br>
+    <%= f.submit "Create Task" %>
+
+  <% end %>
+
+  <br>
+
+  <%= link_to "Back", tasks_path %>
+
+</div>

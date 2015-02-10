@@ -1,0 +1,19 @@
+<div class="container">
+
+  <h1>Editing Task</h1>
+
+  <%= form_for @task do |f| %>
+
+    <%= f.label :description %>
+    <br>
+    <%= f.text_field :description, placeholder: "test task" %>
+    <br>
+    <%= f.submit "Update Task" %>
+
+  <% end %>
+  <br>
+  <%= link_to "Show", show_tasks_path %>
+  |
+  <%= link_to "Back", tasks_path %>
+
+</div>
