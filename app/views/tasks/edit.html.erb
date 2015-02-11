@@ -6,11 +6,12 @@
 
     <%= f.label :description %>
     <br>
-    <%= f.text_field :description, placeholder: "test task" %>
+    <%= f.text_field :description %>
     <br>
     <%= f.submit "Update Task" %>
 
   <% end %>
+
   <br>
   <%= link_to "Show", task_path(@task) %>
   |
