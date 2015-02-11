@@ -11,7 +11,6 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      flash[:notice] = "Task was successfully updated"
       redirect_to task_path(@task)
     else
       render :new
