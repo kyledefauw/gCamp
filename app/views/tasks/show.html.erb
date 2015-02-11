@@ -1,6 +1,17 @@
+<div class = "container">
+
+  <% if notice %>
+  <p class="alert alert-success" role="alert"><%= notice %></p>
+  <% end %>
+
+  <br>
+
+    <strong>Description: <%= @task.description %></strong>
+  <br>
+  <br>
+  <%= link_to "Edit", edit_task_path(@task) %>
+  |
+  <%= link_to "Back", tasks_path(@task) %>
 
 
-<br>
-<%= link_to "edit", edit_tasks_path %>
-|
-<%= link_to "Back", tasks_path %>
+</div>
