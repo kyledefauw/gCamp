@@ -6,20 +6,24 @@
     <a href="/tasks">Tasks</a> >
     <a href="/tasks"><%= @task.description %></a> >
     <class="active">Edit Task
-  </div>
+  <br>
   <br>
 
         <%= form_for @task do |f| %>
     <div class = "form-group">
-      <div class="col-md-1">
-        <%= f.label :description, class: "control-label" %>
-      </div>
+        <%= f.label :description, class: "col-md-1 control-label" %>
       <div class="col-md-4">
         <%= f.text_field :description, class: "form-control" %>
       </div>
+    </div>
 
-    <br>
-    <br>
+    <div class = "form-group">
+        <%= f.label :name, "Due Date", class: "col-md-1 control-label" %>
+      <div class="col-md-2">
+        <%= f.text_field :date, class: "form-control" %>
+      </div>
+    </div>
+
     <div class="form-group">
       <div class = "col-md-offset-1 col-md-10">
         <%= f.check_box :complete %>
@@ -27,12 +31,13 @@
       </div>
     </div>
 
-    <br>
     <div class= "form-group">
         <div class= "col-md-offset-1 col-md-10">
         <%= f.submit "Update Task", class:"btn btn-primary" %>
         <%= link_to "cancel", tasks_path, class:"btn btn-default" %>
       </div>
     </div>
-  </div>
+  <br>
+</div>
+
   <% end %>
