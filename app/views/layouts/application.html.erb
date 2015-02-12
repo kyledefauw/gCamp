@@ -7,37 +7,37 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">gCamp</a>
-    </div>
-  </div>
-</nav>
-
-<%= yield %>
-
 <div class="container">
-  <footer><hr>
-    <%= link_to "About", about_path %>
-    |
-    <%= link_to "Terms", terms_path %>
-    |
-    <%= link_to "FAQ", faq_path %>
-    |
-    <%= link_to "Tasks", tasks_path %>
-    <%= link_to image_tag("gschool_logo.png", class: "img-footer"), "https://students.gschool.it/cohorts/8/students/287"%>
-    <%= link_to image_tag("twitter_logo.png", class: "img-footer"), "https://twitter.com/KyleDeFauw"%>
-    <%= link_to image_tag("github_logo.png", class: "img-footer"), "https://github.com/kyledefauw"%>
-    <%= link_to image_tag("linkedin_logo.jpg", class: "img-footer"), "https://www.linkedin.com/profile/view?id=170108432&trk=nav_responsive_tab_profile"%>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">gCamp</a>
+      </div>
+    </div>
+  </nav>
 
-  </footer>
+  <%= yield %>
+
+  <div class="container">
+    <footer><hr>
+      <%= link_to "About", about_path %>
+      |
+      <%= link_to "Terms", terms_path %>
+      |
+      <%= link_to "FAQ", faq_path %>
+      |
+      <%= link_to "Tasks", tasks_path %>
+      <%= link_to image_tag("gschool_logo.png", class: "img-footer"), "https://students.gschool.it/cohorts/8/students/287"%>
+      <%= link_to image_tag("twitter_logo.png", class: "img-footer"), "https://twitter.com/KyleDeFauw"%>
+      <%= link_to image_tag("github_logo.png", class: "img-footer"), "https://github.com/kyledefauw"%>
+      <%= link_to image_tag("linkedin_logo.jpg", class: "img-footer"), "https://www.linkedin.com/profile/view?id=170108432&trk=nav_responsive_tab_profile"%>
+
+    </footer>
+  </div>
 </div>
-
 </body>
 </html>
