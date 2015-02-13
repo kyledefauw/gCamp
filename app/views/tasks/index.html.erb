@@ -7,8 +7,12 @@
   <thead>
     <tr>
       <th>
-        <p><strong>Description</strong></p>
-      </th><th></th>
+        Description
+      </th>
+      <th>
+        Due On
+      </th>
+      <th></th>
     </tr>
   </thead>
 
@@ -17,6 +21,9 @@
       <tr>
         <td>
           <%= link_to task.description, task_path(task) %>
+        </td>
+        <td>
+          <%= task.date %>
         </td>
         <td>
           <div class="pull-right">
