@@ -13,7 +13,7 @@
 
   </div>
 
-<div class="form-horizontal">
-    <a href="/tasks">Tasks</a> >
-    <a class="active"><%= @task.description %>
-</div>
+  <ol class="breadcrumb">
+    <li><a href="/tasks">Tasks</a></li>
+    <li><a href="/tasks"><%= @task.description %></a></li>
+  </ol>

@@ -2,42 +2,39 @@
     <h1>Edit Task</h1>
   </div>
 
-  <div class="form-horizontal">
-    <a href="/tasks">Tasks</a> >
-    <a href="/tasks"><%= @task.description %></a> >
-    <class="active">Edit Task
-  <br>
-  <br>
+    <ol class="breadcrumb">
+      <li><a href="/tasks">Tasks</a></li>
+      <li><a href="/tasks"><%= @task.description %></a></li>
+      <li><class="active">Edit Task</li>
+    </ol>
 
-        <%= form_for @task do |f| %>
-    <div class = "form-group">
-        <%= f.label :description, class: "col-md-1 control-label" %>
-      <div class="col-md-4">
+  <%= form_for @task, html: {class: "form-horizontal"} do |f| %>
+
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Description</label>
+      <div class="col-sm-4">
         <%= f.text_field :description, class: "form-control" %>
       </div>
     </div>
-
     <div class = "form-group">
-        <%= f.label :name, "Due Date", class: "col-md-1 control-label" %>
-      <div class="col-md-2">
+      <%= f.label :date, class: "col-sm-2 control-label" %>
+      <div class="col-sm-4">
         <%= f.date_field :date, class: "form-control" %>
       </div>
     </div>
-
     <div class="form-group">
-      <div class = "col-md-offset-1 col-md-10">
+      <div class = "col-md-offset-2 col-md-10">
         <%= f.check_box :complete %>
         <%= f.label :complete %>
       </div>
     </div>
-
-    <div class= "form-group">
-        <div class= "col-md-offset-1 col-md-10">
-        <%= f.submit "Update Task", class:"btn btn-primary" %>
-        <%= link_to "cancel", tasks_path, class:"btn btn-default" %>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Update Task</button>
+        <button type="cancel" class="btn btn-default">cancel</button>
       </div>
     </div>
-  <br>
-</div>
+  </form>
 
   <% end %>
