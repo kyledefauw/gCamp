@@ -12,9 +12,8 @@ class UsersController < ApplicationController
     @task = User.new(user_params)
 
     if @user.save
-      flash[:notice] = "User was successfully created"
-
       redirect_to user_path(@user)
+      flash[:notice] = "User was successfully created"
     else
       render :new
     end

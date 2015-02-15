@@ -2,3 +2,30 @@
   <%= link_to "New User", new_user_path(@user), class:"btn btn-info pull-right" %>
   <h1>Users</h1>
 </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Email
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= user.first_name %>
+        <%= user.last_name %>
+      </td>
+      <td>
+        <%= mail_to user.email %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
