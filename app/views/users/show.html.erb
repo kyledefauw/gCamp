@@ -1,0 +1,13 @@
+<% if notice %>
+<p class="alert alert-success" role="alert"><%= notice %></p>
+<% end %>
+
+<div class="page-header">
+  <%= link_to "Edit", edit_user_path(@user), class:"btn btn-info pull-right" %>
+
+</div>
+
+<ol class="breadcrumb">
+  <li><a href="/users">Users</a></li>
+  <li><a href="/users"><%= @user.first_name %></a></li>
+</ol>
