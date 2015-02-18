@@ -2,12 +2,19 @@
 <p class="alert alert-success" role="alert"><%= notice %></p>
 <% end %>
 
+
 <div class="page-header">
   <%= link_to "Edit", edit_user_path(@user), class:"btn btn-info pull-right" %>
 
+  <h1>Show User</h1>
 </div>
 
-<ol class="breadcrumb">
-  <li><a href="/users">Users</a></li>
-  <li><a href="/users"><%= @user.first_name %></a></li>
-</ol>
+  <ol class="breadcrumb">
+    <li><a href="/users">Users</a></li>
+    <li><a href="/users"><%= @user.first_name %></a></li>
+  </ol>
+
+
+<%= @user.first_name %> <%= @user.last_name %>
+<br>
+<%= @user.email %>
