@@ -6,5 +6,6 @@ get '/terms', to: 'terms#index'
 get '/faq', to: 'common_questions#index'
 resources :tasks
 resources :users
+resources :projects
 
 end
