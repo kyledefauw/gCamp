@@ -1,3 +1,7 @@
+<% if notice %>
+<p class="alert alert-success" role="alert"><%= notice %></p>
+<% end %>
+
 <div class="page-header">
   <%= link_to "New Project", new_project_path(@project), class:"btn btn-info pull-right" %>
   <h1>Projects</h1>
@@ -7,12 +11,8 @@
   <thead>
     <tr>
       <th>
-        Description
+        Name
       </th>
-      <th>
-        Due On
-      </th>
-      <th></th>
     </tr>
   </thead>
 
@@ -20,16 +20,7 @@
       <% @projects.each do |project| %>
       <tr>
         <td>
-          <%= link_to project.description, project_path(project) %>
-        </td>
-        <td>
-          <%= project.date %>
-        </td>
-        <td>
-          <div class="pull-right">
-            <%= link_to "Edit ", edit_project_path(project), class:"btn btn-info" %>
-            <%= link_to "Delete", project, method: :delete, class:"btn btn-danger" %>
-          </div>
+          <%= link_to project.name, project_path(project) %>
         </td>
       </tr>
       <% end %>
