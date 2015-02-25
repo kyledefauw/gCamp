@@ -27,8 +27,8 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary">Create Project</button>
-      <button type="cancel" class="btn btn-default">Cancel</button>
+      <%= f.submit class:'btn btn-primary' %>
+      <%= link_to 'Cancel', projects_path, class: 'btn btn-default' %>
     </div>
   </div>
 
