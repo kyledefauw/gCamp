@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Toys!</h1>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th> Toy Name </th>
+      <th> Cat </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @toys.each do |toy| %>
+      <tr>
+        <td>
+          <%= link_to toy.name, toy_path(toy) %>
+        </td>
+        <td>
+          <%= @toys.cat %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

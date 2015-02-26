@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>Cats!</h1>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cats.each do |cat| %>
+      <tr>
+        <td>
+          <%= link_to cat.name, cat_path(cat) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
