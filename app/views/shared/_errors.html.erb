@@ -1,10 +1,10 @@
 <div class="form-group">
-  <% if @user.errors.any? %>
+  <% if object.errors.any? %>
     <div class="col-md-6 col-md-offset-2">
       <div class="alert alert-danger">
-        <h3> <%= pluralize(@user.errors.count, 'errors') %> prohibited this form from being saved:</h3>
+        <h3> <%= pluralize(object.errors.count, 'errors') %> prohibited this form from being saved:</h3>
           <ul>
-            <% @user.errors.full_messages.each do |message| %>
+            <% object.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
           </ul>
@@ -12,3 +12,4 @@
     </div>
   <% end %>
 </div>
+<br>
