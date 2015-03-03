@@ -11,7 +11,7 @@ class AuthenticationController < ApplicationController
       flash[:notice] = "You have successfully logged in"
       redirect_to roots_path
     else
-      flash[:notice] = "You have successfully logged in"
+      flash[:notice] = "Opps, something went wrong!"
       render :new
     end
   end
