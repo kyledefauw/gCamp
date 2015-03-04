@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
   feature "User can Create, Read, Update and Delete Users with flash messages"  do
     scenario "User can create users with flash messages" do
