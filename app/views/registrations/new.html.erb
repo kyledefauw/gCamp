@@ -2,7 +2,7 @@
   <div class="col-md-offset-3 col-md-6">
     <div class="well">
       <%= render partial: "/shared/errors", locals:{object: @user} %>
-        <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
+        <%= form_for @user do |f| %>
         <div class="form-group page-header">
           <h2>Sign up for gCamp!</h2>
         </div>
