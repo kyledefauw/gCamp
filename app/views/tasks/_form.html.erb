@@ -3,7 +3,7 @@
 <%= render partial: "/shared/errors", locals:{object: @task} %>
 
 <div class="form-group">
-  <label class="col-sm-2 control-label">Description</label>
+  <%= f.label :description, class: "col-sm-2 control-label" %>
   <div class="col-sm-4">
     <%= f.text_field :description, class: "form-control" %>
   </div>
