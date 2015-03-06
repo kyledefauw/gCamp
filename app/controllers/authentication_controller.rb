@@ -1,7 +1,7 @@
 class AuthenticationController < ApplicationController
 
   def new
-
+    @user = User.new
   end
 
   def create
@@ -9,7 +9,7 @@ class AuthenticationController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = "You have successfully logged in"
-      redirect_to roots_path
+      redirect_to root_path
     else
       flash[:notice] = "Opps, something went wrong!"
       render :new
