@@ -1,11 +1,18 @@
 <div class="row">
-  <div class="col-md-offset-3 col-md-6">
-    <div class="well">
-      <%= render partial: "/shared/errors", locals:{object: @user} %>
-        <%= form_for @user do |f| %>
-        <div class="form-group page-header">
-          <h2>Sign up for gCamp!</h2>
-        </div>
+  <div class="well col-md-offset-3 col-md-6">
+    <div class="form-group page-header">
+      <h2>Sign up for gCamp!</h2>
+    </div>
+    
+        <% if @user.errors.any? %>
+            <div class="text-danger">
+              <% @user.errors.full_messages.each do |message| %>
+                <%= message %><br>
+              <% end %>
+            </div>
+        <% end %>
+
+        <%= form_for @user, url: sign_up_path do |f| %>
         <div class="form-group">
           <%= f.label :first_name, class: "label-control" %>
           <%= f.text_field :first_name, class: "form-control" %>
@@ -27,9 +34,8 @@
           <%= f.password_field :password_confirmation, class: "form-control" %>
         </div>
         <div class="form-group">
-            <%= link_to "Sign Up", sign_up_path, class:"btn btn-default" %>
+            <%= f.submit "Sign Up", class:"btn btn-default" %>
         </div>
       <% end %>
-    </div>
   </div>
 </div>
