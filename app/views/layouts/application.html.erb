@@ -36,6 +36,10 @@
   <p class="alert alert-success" role="alert"><%= notice %></p>
   <% end %>
 
+  <% if flash[:error] %>
+    <div class="alert alert-danger text-left"><%= flash[:error] %></div>
+  <% end %>
+
   <%= yield %>
 
   <footer><hr>
