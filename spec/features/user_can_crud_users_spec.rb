@@ -3,19 +3,13 @@ require "rails_helper"
   feature "User can Create, Read, Update and Delete users with flash messages" do
 
     before do
-      @user1 = User.create(
-            first_name: 'Jeff',
-            last_name: 'Austin',
-            email: 'jeff@austin.com',
-            password: 'mandolin',
-            password_confirmation: 'mandolin'
-            )
+      sign_in
     end
 
     scenario "User can create users with flash messages" do
       visit users_path
       click_on 'New User'
-      click_on 'Create User'
+      within("form") { click_on 'Create User'}
       expect(page).to have_content("can\'t be blank")
 
       fill_in 'First name', with: 'Keller'
