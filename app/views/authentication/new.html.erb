@@ -4,13 +4,9 @@
       <h2>Sign into gCamp!</h2>
     </div>
 
-        <% if @user.errors.any? %>
-            <div class="text-danger">
-              <% @user.errors.full_messages.each do |message| %>
-                <%= message %><br>
-              <% end %>
-            </div>
-        <% end %>
+    <% if flash[:failure] %>
+      <strong><p class="text-danger"><%= flash[:failure] %></p></strong>
+    <% end %>
 
       <%= form_tag sign_in_path do %>
       <div class="form-group">
