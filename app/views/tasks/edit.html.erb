@@ -2,10 +2,11 @@
     <h1>Edit Task</h1>
   </div>
 
-    <ol class="breadcrumb">
-      <li><a href="/tasks">Tasks</a></li>
-      <li><a href="/tasks"><%= @task.description %></a></li>
-      <li><class="active">Edit Task</li>
-    </ol>
+  <ol class="breadcrumb">
+    <li><%= link_to "Projects", projects_path %></li>
+    <li><%= link_to @project.name, project_path(@project) %></li>
+    <li><%= link_to "Tasks", project_tasks_path %></li>
+    <li><%= @task.description %></li>
+  </ol>
 
 <%= render "form" %>
