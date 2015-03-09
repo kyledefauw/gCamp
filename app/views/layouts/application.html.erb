@@ -42,29 +42,30 @@
 
   <%= yield %>
 
-  <footer><hr>
-    <% if current_user %>
-      <%= link_to "About", about_path %> |
-      <%= link_to "Terms", terms_path %> |
-      <%= link_to "FAQ", faq_path %> |
-      <%= link_to "Users", users_path %> |
-      <%= link_to "Projects", projects_path %>
+    <footer><hr>
+      <% if current_user %>
+        <%= link_to "About", about_path %> |
+        <%= link_to "Terms", terms_path %> |
+        <%= link_to "FAQ", faq_path %> |
+        <%= link_to "Users", users_path %> |
+        <%= link_to "Projects", projects_path %>
 
-      <%= link_to image_tag("gschool_logo.png", class: "img-footer"), "https://students.gschool.it/cohorts/8/students/287"%>
-      <%= link_to image_tag("twitter_logo.png", class: "img-footer"), "https://twitter.com/KyleDeFauw"%>
-      <%= link_to image_tag("github_logo.png", class: "img-footer"), "https://github.com/kyledefauw"%>
-      <%= link_to image_tag("linkedin_logo.jpg", class: "img-footer"), "https://www.linkedin.com/profile/view?id=170108432&trk=nav_responsive_tab_profile"%>
-    <% else %>
-      <%= link_to "About", about_path %> |
-      <%= link_to "Terms", terms_path %> |
-      <%= link_to "FAQ", faq_path %> |
+        <%= link_to image_tag("gschool_logo.png", class: "img-footer"), "https://students.gschool.it/cohorts/8/students/287"%>
+        <%= link_to image_tag("twitter_logo.png", class: "img-footer"), "https://twitter.com/KyleDeFauw"%>
+        <%= link_to image_tag("github_logo.png", class: "img-footer"), "https://github.com/kyledefauw"%>
+        <%= link_to image_tag("linkedin_logo.jpg", class: "img-footer"), "https://www.linkedin.com/profile/view?id=170108432&trk=nav_responsive_tab_profile"%>
+      <% else %>
+        <%= link_to "About", about_path %> |
+        <%= link_to "Terms", terms_path %> |
+        <%= link_to "FAQ", faq_path %> |
 
-      <%= link_to image_tag("gschool_logo.png", class: "img-footer"), "https://students.gschool.it/cohorts/8/students/287"%>
-      <%= link_to image_tag("twitter_logo.png", class: "img-footer"), "https://twitter.com/KyleDeFauw"%>
-      <%= link_to image_tag("github_logo.png", class: "img-footer"), "https://github.com/kyledefauw"%>
-      <%= link_to image_tag("linkedin_logo.jpg", class: "img-footer"), "https://www.linkedin.com/profile/view?id=170108432&trk=nav_responsive_tab_profile"%>
-    <% end %>
+        <%= link_to image_tag("gschool_logo.png", class: "img-footer"), "https://students.gschool.it/cohorts/8/students/287"%>
+        <%= link_to image_tag("twitter_logo.png", class: "img-footer"), "https://twitter.com/KyleDeFauw"%>
+        <%= link_to image_tag("github_logo.png", class: "img-footer"), "https://github.com/kyledefauw"%>
+        <%= link_to image_tag("linkedin_logo.jpg", class: "img-footer"), "https://www.linkedin.com/profile/view?id=170108432&trk=nav_responsive_tab_profile"%>
+      <% end %>
 
-  </footer>
+    </footer>
+  </div>
 </body>
 </html>
