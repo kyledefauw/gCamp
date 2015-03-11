@@ -11,7 +11,7 @@ class AuthenticationController < ApplicationController
       flash[:notice] = "You have successfully logged in"
       redirect_to root_path
     else
-      flash[:failure] = "Username / Password combination is invalid"
+      flash[:failure] = "Email / Password combination is invalid"
       render :new
     end
   end
