@@ -3,7 +3,8 @@ require "rails_helper"
   feature "User can Create, Read, Update and Delete projects with flash messages" do
 
     before do
-      @project1 = Project.create(:name => 'Killin it')
+      @project1 = Project.create!(:name => 'Killin it')
+      sign_in
     end
 
     scenario "User can create projects with flash messages" do
