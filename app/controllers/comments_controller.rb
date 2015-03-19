@@ -13,9 +13,10 @@ class CommentsController < ApplicationController
     @comment = @task.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to project_task_path(@project, @task)
+      redirect_to project_task_path(@task.project.id, @task)
     else
       flash[:notice] - "Opps, Please try again."
+      redirect_to project_task_path(@task.project.id, @task)
     end
   end
 

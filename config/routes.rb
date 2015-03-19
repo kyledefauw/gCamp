@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
+  resources :tasks do
+    resources :comments
+  end
+
   get 'sign-up', to: 'registrations#new'
   post 'sign-up', to: 'registrations#create'
   get 'sign-out', to: 'authentication#destroy'
