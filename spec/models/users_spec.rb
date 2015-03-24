@@ -8,7 +8,7 @@ describe User do
      last_name: 'User',
      email: 'test@test.com'
      )
-     sign_in
+     sign_in(@user)
    end
 
    it "should be invalid without first name" do

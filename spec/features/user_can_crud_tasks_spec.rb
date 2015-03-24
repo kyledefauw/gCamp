@@ -3,7 +3,7 @@ require "rails_helper"
   feature "User can Create, Read, Update and Delete Tasks with flash messages" do
 
     before do
-      sign_in
+      sign_in(@user)
       @project1 = Project.create(:name => 'Killin it')
       @task1 = @project.task.create(:description => 'Do work', :date => '09/06/2021')
     end

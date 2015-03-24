@@ -4,7 +4,7 @@ require "rails_helper"
 
     before do
       @project1 = Project.create!(:name => 'Killin it')
-      sign_in
+      sign_in(@user)
     end
 
     scenario "User can create projects with flash messages" do
