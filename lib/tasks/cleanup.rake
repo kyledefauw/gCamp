@@ -1,5 +1,5 @@
 namespace :cleanup do
-  describe 'Fix invalid data'
+  desc 'Fix invalid data'
   task data: :environment do
     Membership.where.not(user_id: User.pluck(:id)).destroy_all
     Membership.where.not(project_id: Project.pluck(:id)).destroy_all
