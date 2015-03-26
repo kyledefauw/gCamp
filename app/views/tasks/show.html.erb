@@ -15,7 +15,9 @@
     <li><%= @task.description %></li>
   </ol>
 
-  <strong>Due on: </strong><%= @task.date %>
+  <% if @task.date %>
+    <strong>Due On: </strong><%=@task.date.strftime("%m/%d/%Y")%>
+  <% end %>
 
   <h3>Comments</h3>
 
