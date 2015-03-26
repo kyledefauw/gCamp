@@ -65,6 +65,7 @@ class TasksController < ApplicationController
     unless Membership.where(project_id: @project.id).include?(current_user.memberships.find_by(project_id: @project.id))
       flash[:danger] = "You do not have access"
       redirect_to projects_path
+    end
   end
 
 end
