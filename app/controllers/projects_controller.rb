@@ -3,7 +3,12 @@ class ProjectsController < ApplicationController
   before_filter :ensure_signed_in
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects.all
+    # memberships = current_user.memberships
+    # @projects = []
+    # memberships.each do |membership|
+    #   @projects << membership.project
+    # end
   end
 
   def new
@@ -13,6 +18,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
+      @membership = @project.memberships.create!(user_id: current_user.id, role: 1)
       flash[:notice] = "Project was successfully created"
       redirect_to project_path(@project)
     else
@@ -49,5 +55,7 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:name)
   end
+
+
 
 end

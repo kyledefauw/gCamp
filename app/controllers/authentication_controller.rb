@@ -1,4 +1,4 @@
-class AuthenticationController < ApplicationController
+class AuthenticationController < PublicController
 
   def new
     @user = User.new
@@ -17,7 +17,7 @@ class AuthenticationController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session.clear
     redirect_to root_path
   end
 
