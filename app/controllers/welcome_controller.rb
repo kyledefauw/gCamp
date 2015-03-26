@@ -1,4 +1,4 @@
-class WelcomeController < ApplicationController
+class WelcomeController < PublicController
   def index
     @quotes_array = [
       {author: "-Cayla Hayes", quote: "gCamp has changed my life!  It's the best tool I've ever used."},
