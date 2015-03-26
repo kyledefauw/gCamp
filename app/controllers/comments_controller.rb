@@ -1,10 +1,6 @@
 class CommentsController < ApplicationController
   before_action :find_and_set_project
 
-  def index
-    @comments = @task.comments.all
-  end
-
   def new
     @comment = @task.comments.new
   end

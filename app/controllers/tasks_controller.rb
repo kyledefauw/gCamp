@@ -63,7 +63,7 @@ class TasksController < ApplicationController
 
   def limit_action
     unless Membership.where(project_id: @project.id).include?(current_user.memberships.find_by(project_id: @project.id))
-      flash[:danger] = "You do not have access"
+      flash[:error] = "You do not have access"
       redirect_to projects_path
     end
   end
