@@ -29,9 +29,9 @@
             <%= link_to comment.user.full_name, user_path(comment.user) %>
           <% else %>
             <p class = "text-muted">(deleted user)</p>
+          <% end %>
           <p class = "text-muted">
            <%= time_ago_in_words(comment.created_at) + " ago" %>
-          <% end %>
           </p>
        </div>
        <div class= "col-md-9 pull-right">
