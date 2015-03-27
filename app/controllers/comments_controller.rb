@@ -11,7 +11,6 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to project_task_path(@task.project.id, @task)
     else
-      flash[:error] = "Opps, Please try again."
       redirect_to project_task_path(@task.project.id, @task)
     end
   end
