@@ -21,15 +21,17 @@
   </div>
 <% end %>
 
-<div class="well">
-  <%= form_for [@membership], url: project_memberships_path(@project), html: {class: "form-inline"}  do |f| %>
+<% if current_user.memberships.find_by(role: 1) %>
+  <div class="well">
+    <%= form_for [@membership], url: project_memberships_path(@project), html: {class: "form-inline"}  do |f| %>
 
-    <%= f.collection_select(:user_id, User.all, :id, :full_name, {prompt: "Please select a user..."}, {class: "form-control"}) %>
-    <td> <%= f.collection_select(:role, Membership.roles.keys, :to_s, :to_s, {}, {class: "form-control"}) %></td>
-    <%= f.submit 'Add New Member', class: 'btn btn-primary' %>
+      <%= f.collection_select(:user_id, User.all, :id, :full_name, {prompt: "Please select a user..."}, {class: "form-control"}) %>
+      <td> <%= f.collection_select(:role, Membership.roles.keys, :to_s, :to_s, {}, {class: "form-control"}) %></td>
+      <%= f.submit 'Add New Member', class: 'btn btn-primary' %>
 
-    <% end %>
-</div>
+      <% end %>
+  </div>
+<% end %>
 
 <div class="container">
   <div class="row">
@@ -40,10 +42,15 @@
             <% if membership.id %>
               <%= form_for [@project, membership] do |f| %>
                 <tr>
-                  <td> <%= link_to membership.user.full_name, user_path(membership.user) %></td>
-                  <td> <%= f.collection_select(:role, Membership.roles.keys, :to_s, :to_s, {}, {class: "form-control"}) %></td>
-                  <td> <%= f.submit "Update", class: "btn btn-primary" %></td>
-                  <td> <%= link_to "", project_membership_path(@project, membership), method: :delete, class: "glyphicon glyphicon-remove" %></td>
+                  <% if current_user.memberships.find_by(role: 1) %>
+                    <td> <%= link_to membership.user.full_name, user_path(membership.user) %></td>
+                    <td> <%= f.collection_select(:role, Membership.roles.keys, :to_s, :to_s, {}, {class: "form-control"}) %></td>
+                    <td> <%= f.submit "Update", class: "btn btn-primary" %></td>
+                    <td> <%= link_to "", project_membership_path(@project, membership), method: :delete, class: "glyphicon glyphicon-remove" %></td>
+                  <% else %>
+                    <td> <%= link_to membership.user.full_name, user_path(membership.user) %></td>
+                    <td> <%= membership.role.downcase %> </td>
+                  <% end %>
                 </tr>
               <% end %>
             <% end %>
