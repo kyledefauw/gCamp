@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
-
-  before_filter :ensure_signed_in
+  before_action :set_project, except: [:index, :new, :create, :destroy]
+  before_action :ensure_signed_in
+  before_action :ensure_member_of_project, except: [:index, :new, :create, :destroy]
+  before_action :ensure_project_has_owner, only: [:edit, :update]
 
   def index
     @projects = current_user.projects.all
@@ -38,15 +40,16 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.update(project_params)
       flash[:notice] = "Project was successfully updated"
-      redirect_to project_path
+      redirect_to project_path(@project)
     else
       render :edit
     end
   end
 
   def destroy
-    Project.destroy(params[:id])
-    flash[:notice] = "Project was successfully deleted"
+    project = Project.find(params[:id])
+    project.destroy
+    flash[:notice] = 'Project was successfully deleted'
     redirect_to projects_path
   end
 
@@ -56,6 +59,8 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name)
   end
 
-
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
 end

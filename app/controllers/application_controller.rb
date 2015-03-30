@@ -18,4 +18,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ensure_member_of_project
+    unless current_user.projects.include?(@project)
+      flash[:error] = "You do not have access to that project"
+      redirect_to projects_path
+    end
+  end
+
+  def ensure_project_has_owner
+    unless Membership.where(project_id: @project).include?(current_user.memberships.find_by(role: 1))
+      flash[:error] = "You do not have access to that project"
+      redirect_to projects_path
+    end
+  end
+
 end
