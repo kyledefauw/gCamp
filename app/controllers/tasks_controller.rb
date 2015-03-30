@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :find_and_set_project
   before_filter :ensure_signed_in
-  before_action :limit_action_for_tasks
+  before_action :limit_action
 
   def index
     @tasks = @project.tasks
@@ -61,11 +61,5 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
-  def limit_action_for_tasks
-    unless Membership.where(project_id: @project.id).include?(current_user.memberships.find_by(project_id: @project.id))
-      flash[:error] = "You do not have access"
-      redirect_to projects_path
-    end
-  end
 
 end

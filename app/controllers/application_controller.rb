@@ -38,5 +38,12 @@ class ApplicationController < ActionController::Base
       redirect_to project_memberships_path
     end
   end
+  
+  def limit_action_for_tasks
+    unless Membership.where(project_id: @project.id).include?(current_user.memberships.find_by(project_id: @project.id))
+      flash[:error] = "You do not have access"
+      redirect_to projects_path
+    end
+  end
 
 end
