@@ -1,7 +1,7 @@
 class MembershipsController < ApplicationController
   before_action :find_and_set_project
   before_action :ensure_signed_in
-  before_action :limit_action
+  before_action :ensure_project_owner
 
   def index
     @memberships = @project.memberships

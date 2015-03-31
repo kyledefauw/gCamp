@@ -33,13 +33,13 @@
           <p class = "text-muted">
            <%= time_ago_in_words(comment.created_at) + " ago" %>
           </p>
-       </div>
-       <div class= "col-md-9 pull-right">
-         <%= comment.message %>
-       </div>
-     </div>
-   </p>
- <% end %>
+        </div>
+        <div class= "col-md-9 pull-right">
+          <%= comment.message %>
+        </div>
+      </div>
+    </p>
+  <% end %>
 
   <%= form_for [@task, @comment] do |f|%>
   <div class = "form-group">
