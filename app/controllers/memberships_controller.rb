@@ -1,7 +1,7 @@
 class MembershipsController < ApplicationController
   before_action :find_and_set_project
   before_action :ensure_signed_in
-  before_action :verify_project_owner, except: [:index, :new, :update]
+  before_action :verify_project_owner, except: [:index, :new, :update, :destroy]
 
   def index
     @memberships = @project.memberships
@@ -34,21 +34,28 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = Membership.find(params[:id])
-
-    if @membership.update(membership_params)
-      flash[:notice] = "#{@membership.user.full_name} was successfully updated"
-      redirect_to project_memberships_path(@project.id)
+    if owner_count(@project) == 1 && @membership.role == 1
+        flash[:danger] = "Projects must have at least one owner"
+        redirect_to project_memberships_path(@project.id)
+      elsif @membership.update(membership_params)
+        redirect_to project_memberships_path(@project.id)
     else
       render :index
     end
   end
 
   def destroy
-    membership = @project.memberships.find(params[:id])
-    membership.destroy
-    redirect_to project_memberships_path(@project)
-    flash[:notice] = membership.user.full_name + " was successfully removed."
-  end
+    @membership = Membership.find(params[:id])
+     if owner_count(@project) == 1 && @membership.role == 1
+       flash[:danger] = "Projects must have at least one owner"
+       redirect_to project_memberships_path(@project.id)
+     else
+       membership = Membership.find(params[:id])
+       membership.destroy
+       flash[:notice] = "#{membership.user.full_name} was successfully removed"
+       redirect_to projects_path
+     end
+   end
 
   private
 
