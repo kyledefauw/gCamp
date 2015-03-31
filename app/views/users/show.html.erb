@@ -12,5 +12,11 @@
     <dd><%= @user.last_name %></dd>
 <br>
   <dt><b>Email</b></dt>
-    <dd><%= mail_to @user.email %></dd>
+  <% unless match_user(@user) %>
+  <td>
+    <%= mail_to @user.email %>
+  </td>
+  <% else %>
+  <td></td>
+  <% end %>
 </dl>
