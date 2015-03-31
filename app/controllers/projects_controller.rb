@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, except: [:index, :new, :create, :destroy]
+  before_action :set_project, only: [:edit, :show, :update, :destroy]
   before_action :ensure_signed_in
-  before_action :ensure_member_of_project, except: [:index, :new, :create, :destroy]
-  before_action :ensure_project_has_owner, only: [:edit, :update]
+  before_action :verify_member_of_project, except: [:index, :new, :create]
+  before_action :verify_project_owner, only: [:edit, :update, :destroy]
 
   def index
     @projects = current_user.projects.all

@@ -1,7 +1,7 @@
 class MembershipsController < ApplicationController
   before_action :find_and_set_project
   before_action :ensure_signed_in
-  before_action :ensure_project_owner
+  before_action :verify_project_owner, except: [:index, :new, :update]
 
   def index
     @memberships = @project.memberships

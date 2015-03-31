@@ -1,6 +1,6 @@
 <div class="page-header">
   <div class="pull-right">
-    <% if current_user.memberships.find_by(role: 1) %>
+    <% if Membership.where(project_id: @project.id).include?(current_user.memberships.find_by(project_id: @project.id, role: 1))%>
       <%= link_to "Edit", edit_project_path(@project), class:"btn btn-info" %>
     <% end %>
   </div>
@@ -18,7 +18,7 @@
 
 <br><br>
 
-<% if current_user.memberships.find_by(role: 1) %>
+<% if Membership.where(project_id: @project.id).include?(current_user.memberships.find_by(project_id: @project.id, role: 1))%>
   <div class="well">
     <h4>Delete Project</h4>
     <%= "Deleting this project will delete #{pluralize(@project.memberships.count, 'membership')}, #{pluralize(@project.tasks.count, 'task')} and associated comments." %>
