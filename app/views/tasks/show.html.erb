@@ -16,7 +16,7 @@
   </ol>
 
   <% if @task.date %>
-    <strong>Due On: </strong><%=@task.date.strftime("%m/%d/%Y")%>
+    <strong>Due On: </strong><%=@task.date.strftime("%m/%d/%Y") %>
   <% end %>
 
   <h3>Comments</h3>
@@ -25,8 +25,8 @@
     <p>
       <div class = "row">
         <div class = "col-md-3">
-          <% if comment.user_id %>
-            <%= link_to comment.user.full_name, user_path(comment.user) %>
+          <% if comment.user %>
+            <%= link_to comment.user.full_name, user_path(comment.user_id) %>
           <% else %>
             <p class = "text-muted">(deleted user)</p>
           <% end %>
