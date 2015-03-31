@@ -41,11 +41,19 @@
   <%= yield %>
 
     <footer><hr>
+      <% if current_user %>
+        <%= link_to "Home", root_path %> |
+        <%= link_to "About", about_path %> |
+        <%= link_to "Terms", terms_path %> |
+        <%= link_to "FAQ", faq_path %> |
+        <%= link_to "User", users_path %> |
+        <%= link_to "Project", projects_path %>
+      <% else %>
         <%= link_to "Home", root_path %> |
         <%= link_to "About", about_path %> |
         <%= link_to "Terms", terms_path %> |
         <%= link_to "FAQ", faq_path %>
-
+      <% end %>
         <%= link_to image_tag("gschool_logo.png", class: "img-footer"), "https://students.gschool.it/cohorts/8/students/287"%>
         <%= link_to image_tag("twitter_logo.png", class: "img-footer"), "https://twitter.com/KyleDeFauw"%>
         <%= link_to image_tag("github_logo.png", class: "img-footer"), "https://github.com/kyledefauw"%>
