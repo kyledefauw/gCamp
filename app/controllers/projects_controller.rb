@@ -11,8 +11,10 @@ class ProjectsController < ApplicationController
     @tracker_api = TrackerAPI.new
     if current_user.pivotal_token
       @tracker_projects = @tracker_api.projects(current_user.pivotal_token)
+      if @tracker_projects == 403
+        flash.now[:error] = "Pivotal Tracker Token is invalid"
+      end
     end
-  end
 
   def new
     @project = Project.new
