@@ -20,4 +20,10 @@
   <% else %>
     <dd></dd>
   <% end %>
+  <br>
+  <% if @user.pivotal_token %>
+    <dt>Pivotal Tracker Token</dt>
+      <dd><%= @user.token_privacy %></dd>
+    <br>
+    <% end %>
 </dl>
