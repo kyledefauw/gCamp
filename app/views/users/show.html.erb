@@ -11,16 +11,16 @@
 <br>
   <dt><b>Last Name</b></dt>
     <dd><%= @user.last_name %></dd>
-<br>
   <% if @user == current_user || (@user.projects & current_user.projects).any? || current_user.admin %>
+    <br>
     <dt><b>Email</b></dt>
     <dd>
       <%= mail_to @user.email %>
     </dd>
   <% else %>
     <dd></dd>
+    <br>
   <% end %>
-  <br>
   <% if @user.pivotal_token %>
     <dt>Pivotal Tracker Token</dt>
       <dd><%= @user.token_privacy %></dd>
