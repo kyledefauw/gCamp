@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :ensure_signed_in
   helper_method :match_user
   before_action :require_login, only: [:edit, :update]
@@ -45,6 +45,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
+    session.clear
     flash[:notice] = "User was successfully deleted"
     redirect_to users_path
   end
