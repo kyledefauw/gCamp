@@ -6,11 +6,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = current_user.projects.all
-    # memberships = current_user.memberships
-    # @projects = []
-    # memberships.each do |membership|
-    #   @projects << membership.project
-    # end
+    @admin_projects = Project.all
   end
 
   def new

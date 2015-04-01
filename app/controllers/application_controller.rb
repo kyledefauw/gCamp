@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_signed_in
     unless current_user
+      session[:save_session] ||= request.fullpath
       flash[:error] = "You must sign in"
       redirect_to sign_in_path
     end
