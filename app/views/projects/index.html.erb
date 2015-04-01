@@ -16,7 +16,8 @@
   </thead>
 
   <tbody>
-    <% @admin_projects.each do |project| %>
+    <% if current_user.admin %>
+      <% @admin_projects.each do |project| %>
       <tr>
         <td>
           <%= link_to project.name, project_path(project) %>
@@ -25,6 +26,18 @@
           <%= link_to project.tasks.count, project_tasks_path(project) %>
         </td>
       </tr>
+    <% end %>
+    <% else %>
+      <% @projects.each do |project| %>
+        <tr>
+        <td>
+          <%= link_to project.name, project_path(project) %>
+        </td>
+        <td>
+          <%= link_to project.tasks.count, project_tasks_path(project) %>
+        </td>
+      </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
