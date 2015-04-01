@@ -41,3 +41,26 @@
     <% end %>
   </tbody>
 </table>
+
+<table>
+  <% if current_user.pivotal_token %>
+  <h1>Pivotal Tracker Projects</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+        </tr>
+      </thead>
+
+      <% @tracker_projects.each do |tracker_project| %>
+
+      <tbody>
+        <td>
+          <%= link_to tracker_project[:name], "tracker_projects/#{tracker_project[:id]}" %>
+        </td>
+      </tbody>
+      <% end %>
+</table>
+  <% end %>
