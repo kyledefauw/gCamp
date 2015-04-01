@@ -2,7 +2,7 @@ class MembershipsController < ApplicationController
   before_action :find_and_set_project
   before_action :ensure_signed_in
   before_action :ensure_more_than_one_owner, only: [:update, :destroy]
-  before_action :verify_project_owner_or_admin, except: [:index, :new, :update, :destroy]
+  before_action :verify_project_owner_or_admin, except: [:index, :new, :update]
 
   def index
     @memberships = @project.memberships
