@@ -1,0 +1,25 @@
+<div class="page-header">
+  <div class="pull-right">
+    (showing first 500)
+  </div>
+  <h1><%= "Stories for #{@tracker_project}" %></h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <th>Story</th>
+    <th>Estimate</th>
+    <th>Labels</th>
+    <th>Current State</th>
+  </thead>
+
+  <% @tracker_stories.first(500).each do |story| %>
+    <tbody>
+      <td><%= link_to story[:name], story[:url] %></td>
+      <td><%= story[:estimate] %></td>
+      <td><%= story[:labels].map {|label| label[:name]}.join(',') %></td>
+      <td><%= story[:current_state] %></td>
+    </tbody>
+
+  <% end %>
+</table>

@@ -58,7 +58,7 @@
 
       <tbody>
         <td>
-          <%= link_to tracker_project[:name], "tracker_projects/#{tracker_project[:id]}" %>
+          <%= link_to tracker_project[:name], tracker_project_path(tracker_project[:id], tracker_project_name: tracker_project[:name]) %>
         </td>
       </tbody>
       <% end %>

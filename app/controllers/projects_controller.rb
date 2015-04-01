@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
         flash.now[:error] = "Pivotal Tracker Token is invalid"
       end
     end
+  end
 
   def new
     @project = Project.new
