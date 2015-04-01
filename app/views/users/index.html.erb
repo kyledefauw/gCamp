@@ -22,7 +22,7 @@
         <td>
           <%= link_to user.first_name + " " + user.last_name, user_path(user) %>
         </td>
-          <% if user == current_user || (user.projects & current_user.projects).any? %>
+          <% if user == current_user || (user.projects & current_user.projects).any? || current_user.admin %>
           <td>
             <%= mail_to user.email %>
           </td>
@@ -31,7 +31,7 @@
           <% end %>
         <td>
           <div class="pull-right">
-            <% if user == current_user %>
+            <% if user == current_user || current_user.admin %>
               <%= link_to "Edit", edit_user_path(user) %>
             <% end %>
           </div>

@@ -69,7 +69,7 @@ class UsersController < ApplicationController
   end
 
   def require_login
-    unless @user.id == current_user.id
+    unless @user.id == current_user.id || current_user.admin
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
     end
   end

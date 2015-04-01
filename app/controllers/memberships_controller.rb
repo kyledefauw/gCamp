@@ -2,7 +2,7 @@ class MembershipsController < ApplicationController
   before_action :find_and_set_project
   before_action :ensure_signed_in
   before_action :ensure_more_than_one_owner, only: [:update, :destroy]
-  before_action :verify_project_owner, except: [:index, :new, :update, :destroy]
+  before_action :verify_project_owner_or_admin, except: [:index, :new, :update, :destroy]
 
   def index
     @memberships = @project.memberships
@@ -66,7 +66,7 @@ class MembershipsController < ApplicationController
   if Project.find(params[:project_id]).memberships.map(&:role).count("Owner") == 1 && @membership.role == "Owner"
     flash[:error] = "Projects must have at least one owner"
     redirect_to project_memberships_path(@membership.project_id)
+    end
   end
-end
 
 end

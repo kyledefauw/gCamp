@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :find_and_set_project
   before_filter :ensure_signed_in
-  before_action :verify_member_of_project
+  before_action :verify_member_of_project_or_admin
 
   def index
     @tasks = @project.tasks

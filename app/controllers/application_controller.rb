@@ -17,15 +17,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def verify_member_of_project
-    unless current_user.projects.include?(@project)
+  def verify_member_of_project_or_admin
+    unless current_user.projects.include?(@project) || current_user.admin
       flash[:error] = "You do not have access to that project"
       redirect_to projects_path
     end
   end
 
-  def verify_project_owner
-    unless Membership.where(project_id: @project.id).include?(current_user.memberships.find_by(project_id: @project.id, role: 1))
+  def verify_project_owner_or_admin
+    unless Membership.where(project_id: @project.id).include?(current_user.memberships.find_by(project_id: @project.id, role: 1)) || current_user.admin
       flash[:error] = "You do not have access to that project"
       redirect_to projects_path
     end
