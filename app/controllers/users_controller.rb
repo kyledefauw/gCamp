@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-
+  before_action :set_user, only: [:show, :edit, :update]
   before_filter :ensure_signed_in
   helper_method :match_user
+  before_action :require_login, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -58,8 +59,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def match_user(user)
     (current_user.memberships.pluck(:project_id) & user.memberships.pluck(:project_id)).empty?
+  end
+
+  def require_login
+    unless @user.id == current_user.id
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+    end
   end
 
 end
