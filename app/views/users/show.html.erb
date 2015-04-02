@@ -21,8 +21,8 @@
     <dd></dd>
     <br>
   <% end %>
-  <% if @user.pivotal_token %>
-    <dt>Pivotal Tracker Token</dt>
+  <dt>Pivotal Tracker Token</dt>
+    <% if @user.pivotal_token %>
       <dd><%= @user.token_privacy %></dd>
     <br>
     <% end %>
