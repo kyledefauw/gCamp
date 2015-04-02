@@ -9,7 +9,7 @@ require 'rails_helper'
     scenario 'user can sign out' do
       sign_in_user
 
-      expect(page).to have_content "George Clinton"
+      expect(page).to have_content "Jeff Austin"
 
       click_on "Sign Out"
 

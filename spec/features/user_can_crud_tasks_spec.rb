@@ -9,7 +9,7 @@ feature 'Existing users CRUD task' do
   end
 
   scenario "can create a task" do
-    project = Project.create!(name: 'school')
+    project = Project.create!(name: 'Dig a hole')
 
     sign_in_user
     expect(current_path).to eq projects_path
@@ -21,7 +21,7 @@ feature 'Existing users CRUD task' do
 
 
   scenario "Project show page lists tasks" do
-    project = Project.create!(name: 'school')
+    project = Project.create!(name: 'Dig a hole')
 
     sign_in_user
     expect(current_path).to eq projects_path
@@ -29,15 +29,15 @@ feature 'Existing users CRUD task' do
     visit projects_path
     expect(page).to have_content "Projects"
 
-    click_on "school"
-    expect(page).to have_content "school"
+    click_on "Dig a hole"
+    expect(page).to have_content "Dig a hole"
     expect(page).to have_content "0 Tasks"
 
     click_on "0 Tasks"
-    expect(page).to have_content "Tasks for school"
+    expect(page).to have_content "Tasks for Dig a hole"
 
     click_on "New Task"
-    fill_in :task_description, with: "homework"
+    fill_in :task_description, with: "shovel"
     click_on "Create Task"
 
     expect(page).to have_content "Comments"
@@ -47,7 +47,7 @@ end
 
   scenario "index links to show via the description" do
 
-    project = Project.create!(name: 'school')
+    project = Project.create!(name: 'Dig a hole')
 
     sign_in_user
     expect(current_path).to eq projects_path
@@ -55,24 +55,24 @@ end
     visit projects_path
     expect(page).to have_content "Projects"
 
-    click_on "school"
-    expect(page).to have_content "school"
+    click_on "Dig a hole"
+    expect(page).to have_content "Dig a hole"
     expect(page).to have_content "0 Tasks"
 
     click_on "0 Tasks"
-    expect(page).to have_content "Tasks for school"
+    expect(page).to have_content "Tasks for Dig a hole"
 
     click_on "New Task"
-    fill_in :task_description, with: "homework"
+    fill_in :task_description, with: "shovel"
     click_on "Create Task"
 
-    expect(page).to have_content "homework"
+    expect(page).to have_content "shovel"
   end
 
   scenario "can edit task" do
 
 
-    project = Project.create!(name: 'school')
+    project = Project.create!(name: 'Dig a hole')
 
     sign_in_user
     expect(current_path).to eq projects_path
@@ -80,26 +80,26 @@ end
     visit projects_path
     expect(page).to have_content "Projects"
 
-    click_on "school"
-    expect(page).to have_content "school"
+    click_on "Dig a hole"
+    expect(page).to have_content "Dig a hole"
     expect(page).to have_content "0 Tasks"
 
     click_on "0 Tasks"
-    expect(page).to have_content "Tasks for school"
+    expect(page).to have_content "Tasks for Dig a hole"
 
     click_on "New Task"
-    fill_in :task_description, with: "homework"
+    fill_in :task_description, with: "shovel"
 
     click_on "Create Task"
     expect(page).to have_content "Edit"
 
     click_on "Edit"
 
-    fill_in :task_description, with: "errand"
+    fill_in :task_description, with: "dirt"
     click_button 'Update Task'
 
     expect(page).to have_content "Task was successfully updated"
-    expect(page).to have_content 'errand'
+    expect(page).to have_content 'dirt'
   end
 
 end

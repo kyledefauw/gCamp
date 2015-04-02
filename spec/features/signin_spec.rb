@@ -8,11 +8,11 @@ feature "sign in" do
 
   scenario "can sign in" do
 
-    user = User.new(first_name: 'Jon',
-    last_name: 'Bon Jovi',
-    email: 'shotthroughtheheart@youretoolate.com',
-    password: 'livinonaprayer',
-    password_confirmation: 'livinonaprayer')
+    user = User.new(first_name: 'Fred',
+    last_name: 'Flintstone',
+    email: 'fred@flintstone.com',
+    password: 'yabadaba',
+    password_confirmation: 'yabadaba')
     user.save!
 
     visit root_path
@@ -20,8 +20,8 @@ feature "sign in" do
 
     expect(page).to have_content "Sign into gCamp"
 
-    fill_in 'Email', with: 'shotthroughtheheart@youretoolate.com'
-    fill_in 'Password', with: 'livinonaprayer'
+    fill_in 'Email', with: 'fred@flintstone.com'
+    fill_in 'Password', with: 'yabadaba'
     within('form') do
       click_on "Sign In"
     end
@@ -37,8 +37,8 @@ scenario 'are redirected back to the sign in form and shown a flash error if no 
   expect(current_path).to eq sign_in_path
   expect(page).to have_content 'Sign into gCamp'
 
-  fill_in :email, with: 'Randy@Newman.com'
-  fill_in :password, with: 'singwithrandy'
+  fill_in :email, with: 'spider@man.com'
+  fill_in :password, with: 'web'
   click_button 'Sign In'
 
   expect(current_path).to eq sign_in_path

@@ -26,11 +26,11 @@ feature 'Existing users CRUD users' do
 
     expect(current_path).to eq new_project_path
 
-    fill_in :project_name, with: 'dig'
+    fill_in :project_name, with: 'Drink code'
 
     click_button 'Create Project'
 
-    expect(page).to have_content 'dig'
+    expect(page).to have_content 'Drink code'
   end
 
   scenario "index links to show via the name" do
@@ -41,37 +41,37 @@ feature 'Existing users CRUD users' do
     membership = create_membership
     visit project_path(project)
 
-    expect(page).to have_content 'Make Pocket Dog'
+    expect(page).to have_content 'Crush Code'
   end
 
   scenario "can edit user" do
 
-    bam = Project.new(name: 'bam')
-    bam.save!
+    eat = Project.new(name: 'eat')
+    eat.save!
 
     sign_in_user
     visit projects_path
 
-    click_link "bam"
+    click_link "eat"
     click_link "Edit"
 
-    fill_in :project_name, with: "bam!"
+    fill_in :project_name, with: "eat!"
 
     click_button 'Update Project'
 
     expect(page).to have_content "Project was successfully updated"
-    expect(page).to have_content 'bam!'
+    expect(page).to have_content 'eat!'
   end
 
   scenario "can delete project from index" do
 
-    bam = Project.new(name: 'bam')
-    bam.save!
+    eat = Project.new(name: 'eat')
+    eat.save!
 
     sign_in_user
     visit projects_path
 
-    click_on "bam"
+    click_on "eat"
 
     within(".well") do
       click_on "Delete"

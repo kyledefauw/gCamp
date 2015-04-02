@@ -1,41 +1,41 @@
 def sign_in_user
-  user = User.new(first_name: 'George', last_name: 'Clinton', email: 'parliament@mothershipconnection.com', password: 'bringthafunk', password_confirmation: 'bringthafunk', admin: true)
+  user = User.new(first_name: 'Jeff', last_name: 'Austin', email: 'jeff@austin.com', password: 'mandolin', password_confirmation: 'mandolin', admin: true)
   user.save!
   visit sign_in_path
-  fill_in :email, with: 'parliament@mothershipconnection.com'
-  fill_in :password, with: 'bringthafunk'
+  fill_in :email, with: 'jeff@austin.com'
+  fill_in :password, with: 'mandolin'
   click_button 'Sign In'
 end
 
 def create_project(options = {})
   defaults = {
-    name: "Make Pocket Dog"
+    name: "Crush Code"
   }
   project = Project.create!(defaults.merge(options))
 end
 
 def create_task(options={})
   Task.create!({
-    description: "Put dog in pocket",
+    description: "Finish gCamp",
     project_id: create_project.id,
-    date: "1/31/2015"
+    date: "4/21/2015"
   }.merge(options))
 end
 
 def create_user(options={})
   User.create!({
-    first_name: "Dirty",
-    last_name: "Randy",
-    email: "DirtyRandySeed#{rand(100000) + 1}@example.com",
-    password: "password",
-    password_confirmation: "password",
+    first_name: "Joel",
+    last_name: "Cummins",
+    email: "joel.cummins#{rand(100000) + 1}@umphreys.com",
+    password: "mcgee",
+    password_confirmation: "mcgee",
     admin: true
   }.merge(options))
 end
 
 def create_comment(options={})
   Comment.create!({
-    content: "Pocket Dog?",
+    content: "I'll write what I want",
     user_id: create_user.id,
     task_id: create_task.id
   }.merge(options))
