@@ -53,14 +53,16 @@
           </th>
         </tr>
       </thead>
-
-      <% @tracker_projects.each do |tracker_project| %>
-
-      <tbody>
-        <td>
-          <%= link_to tracker_project[:name], tracker_project_path(tracker_project[:id], tracker_project_name: tracker_project[:name]) %>
-        </td>
-      </tbody>
+      <% if @tracker_projects.class == Array %>
+        <% @tracker_projects.each do |tracker_project| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to tracker_project[:name], tracker_project_path(tracker_project[:id], tracker_project_name: tracker_project[:name]) %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
       <% end %>
 </table>
   <% end %>

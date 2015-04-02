@@ -7,12 +7,13 @@ class ProjectsController < ApplicationController
   def index
     @projects = current_user.projects.all
     @admin_projects = Project.all
-
-    @tracker_api = TrackerAPI.new
+    tracker_api = TrackerAPI.new
     if current_user.pivotal_token
-      @tracker_projects = @tracker_api.projects(current_user.pivotal_token)
-      if @tracker_projects == 403
-        flash.now[:error] = "Pivotal Tracker Token is invalid"
+      @tracker_projects = tracker_api.projects(current_user.pivotal_token)
+      if tracker_api.projects(current_user.pivotal_token).class == Array
+        @tracker_projects = tracker_api.projects(current_user.pivotal_token)
+      else
+        flash[:error] = "Pivotal token is invalid"
       end
     end
   end
