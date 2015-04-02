@@ -19,7 +19,7 @@ class MembershipsController < ApplicationController
 
     if @membership.save
       flash[:notice] = "#{@membership.user.full_name} was successfully created"
-      redirect_to project_memberships_path(@project, @membership)
+      redirect_to project_memberships_path(@project)
     else
       render :index
     end

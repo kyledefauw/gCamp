@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   def token_privacy
     first_four = pivotal_token[0,4]
     first_four + ('*'*(pivotal_token.delete first_four).length)
-    # self.pivotal_token[0..3] + ('*'*(self.pivotal_token.length - 4))
   end
 
 end
