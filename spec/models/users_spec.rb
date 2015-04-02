@@ -1,32 +1,11 @@
 require 'rails_helper'
 
-describe User do
 
-  before do
-     @user = User.create!(
-     first_name: 'Test',
-     last_name: 'User',
-     email: 'test@test.com'
-     )
-     sign_in(@user)
-   end
-
-   it "should be invalid without first name" do
-     @user.update_attributes(first_name: "")
-     @user.valid?
-     expect(@user.errors[:first_name]).to include("can't be blank")
-   end
-
-   it "should be invalid without last name" do
-     @user.update_attributes(last_name: "")
-     @user.valid?
-     expect(@user.errors[:last_name]).to include("can't be blank")
-   end
-
-   it "should be invalid without email" do
-     @user.update_attributes(email: "")
-     @user.valid?
-     expect(@user.errors[:email]).to include("can't be blank")
-   end
-
-end
+  describe User do
+    it "requires a first name" do
+      user = User.new
+      expect(user).not_to be_valid
+      user.update(first_name: "Kyle", last_name: "DeFauw", email: "kyle@defauw.com", password: 'coding', password_confirmation: 'coding')
+      expect(user).to be_valid
+    end
+  end

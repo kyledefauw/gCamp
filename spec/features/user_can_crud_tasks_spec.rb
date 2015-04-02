@@ -1,54 +1,105 @@
-require "rails_helper"
+require 'rails_helper'
 
-  feature "User can Create, Read, Update and Delete Tasks with flash messages" do
+feature 'Existing users CRUD task' do
 
-    before do
-      sign_in(@user)
-      @project1 = Project.create(:name => 'Killin it')
-      @task1 = @project.task.create(:description => 'Do work', :date => '09/06/2021')
-    end
-
-    scenario "User can create tasks with flash messages" do
-      visit project_tasks_path(@project1)
-      click_on 'New Task'
-      fill_in 'Description', with: 'Get to work'
-      fill_in 'Date', with: '09/06/2021'
-      check 'Complete'
-      click_on 'Create Task'
-
-      expect(page).to have_content "Get to work"
-      expect(page).to have_content "Task was successfully created"
-    end
-
-    scenario "User can read tasks with flash messages" do
-      visit project_task_path(@task1, @project1)
-
-      expect(page).to have_content 'Do work'
-      expect(page).to have_no_content 'Delete'
-    end
-
-    scenario "User can update tasks with flash messages" do
-      visit project_task_path(@task1, @project1)
-      click_on 'Edit'
-      fill_in 'Description', with: 'You Better Work'
-      click_on 'Update Task'
-      expect(page).to have_content('Task was successfully updated')
-      expect(page).to have_content('You Better Work')
-    end
-
-    scenario "User can delete tasks with flash messages" do
-      visit project_tasks_path
-      click_on 'Delete'
-
-      expect(page).not_to have_content "Do work"
-    end
+  before :each do
+    User.destroy_all
+    Task.destroy_all
+    Project.destroy_all
   end
 
-  feature "User can see at least one validation message displayed" do
-    scenario "validation message pops up when no data is filled in" do
-      visit new_project_task_path
-        fill_in "Date", with: '03/14/2015'
-        click_on 'Create Task'
-        expect(page).to have_content("Description can't be blank")
-    end
+  scenario "can create a task" do
+    project = Project.create!(name: 'school')
+
+    sign_in_user
+    expect(current_path).to eq projects_path
+
+    create_task
+
+    expect(current_path).to eq projects_path
   end
+
+
+  scenario "Project show page lists tasks" do
+    project = Project.create!(name: 'school')
+
+    sign_in_user
+    expect(current_path).to eq projects_path
+
+    visit projects_path
+    expect(page).to have_content "Projects"
+
+    click_on "school"
+    expect(page).to have_content "school"
+    expect(page).to have_content "0 Tasks"
+
+    click_on "0 Tasks"
+    expect(page).to have_content "Tasks for school"
+
+    click_on "New Task"
+    fill_in :task_description, with: "homework"
+    click_on "Create Task"
+
+    expect(page).to have_content "Comments"
+end
+
+
+
+  scenario "index links to show via the description" do
+
+    project = Project.create!(name: 'school')
+
+    sign_in_user
+    expect(current_path).to eq projects_path
+
+    visit projects_path
+    expect(page).to have_content "Projects"
+
+    click_on "school"
+    expect(page).to have_content "school"
+    expect(page).to have_content "0 Tasks"
+
+    click_on "0 Tasks"
+    expect(page).to have_content "Tasks for school"
+
+    click_on "New Task"
+    fill_in :task_description, with: "homework"
+    click_on "Create Task"
+
+    expect(page).to have_content "homework"
+  end
+
+  scenario "can edit task" do
+
+
+    project = Project.create!(name: 'school')
+
+    sign_in_user
+    expect(current_path).to eq projects_path
+
+    visit projects_path
+    expect(page).to have_content "Projects"
+
+    click_on "school"
+    expect(page).to have_content "school"
+    expect(page).to have_content "0 Tasks"
+
+    click_on "0 Tasks"
+    expect(page).to have_content "Tasks for school"
+
+    click_on "New Task"
+    fill_in :task_description, with: "homework"
+
+    click_on "Create Task"
+    expect(page).to have_content "Edit"
+
+    click_on "Edit"
+
+    fill_in :task_description, with: "errand"
+    click_button 'Update Task'
+
+    expect(page).to have_content "Task was successfully updated"
+    expect(page).to have_content 'errand'
+  end
+
+end

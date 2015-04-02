@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 describe Task do
-
-  it "Tasks are not valid without a description" do
-      task = Task.create!(description: nil)
-      task.valid?
-      expect(task.errors[:description]).to include("can't be blank")
+  it "requires a description" do
+    task = Task.new
+    expect(task).not_to be_valid
+    task.description = "This is a task"
+    expect(task).to be_valid
   end
-
 end

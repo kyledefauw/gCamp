@@ -1,50 +1,84 @@
-require "rails_helper"
 
-  feature "User can Create, Read, Update and Delete projects with flash messages" do
+require 'rails_helper'
 
-    before do
-      @project1 = Project.create!(:name => 'Killin it')
-      sign_in(@user)
-    end
+feature 'Existing users CRUD users' do
 
-    scenario "User can create projects with flash messages" do
-      visit projects_path
+  before :each do
+    User.destroy_all
+    Project.destroy_all
+    user = create_user(admin: true)
+  end
+
+  scenario "index lists all projects" do
+
+    sign_in_user
+    expect(current_path).to eq projects_path
+
+  end
+
+  scenario "can make a new project from the new project form" do
+
+    sign_in_user
+    visit (projects_path)
+    within(".dropdown") do
       click_on 'New Project'
-      fill_in 'Name', with: 'Killin it'
-      click_on 'Create Project'
-
-      expect(page).to have_content "Killin it"
-      expect(page).to have_content "Project was successfully created"
     end
 
-    scenario "User can read projects with flash messages" do
-      visit project_path(@project1)
+    expect(current_path).to eq new_project_path
 
-      expect(page).to have_content 'Killin it'
-    end
+    fill_in :project_name, with: 'dig'
 
-    scenario "User can update projects with flash messages" do
-      visit project_path(@project1)
-      click_on 'Edit'
-      fill_in 'Name', with: 'Killin it'
-      click_on 'Update Project'
-      expect(page).to have_content('Project was successfully updated')
-      expect(page).to have_content('Killin it')
-    end
+    click_button 'Create Project'
 
-    scenario "User can delete projects with flash messages" do
-      visit project_path(@project1)
-      click_on 'Delete'
-
-      expect(page).not_to have_content "Killin it"
-    end
+    expect(page).to have_content 'dig'
   end
 
-  feature "User can see at least one validation message displayed" do
-    scenario "validation message pops up when no data is filled in" do
-      visit new_project_path
-        fill_in "Name", with: ''
-        click_on 'Create Project'
-        expect(page).to have_content("Name can't be blank")
-    end
+  scenario "index links to show via the name" do
+
+    sign_in_user
+    user = create_user
+    project = create_project
+    membership = create_membership
+    visit project_path(project)
+
+    expect(page).to have_content 'Make Pocket Dog'
   end
+
+  scenario "can edit user" do
+
+    bam = Project.new(name: 'bam')
+    bam.save!
+
+    sign_in_user
+    visit projects_path
+
+    click_link "bam"
+    click_link "Edit"
+
+    fill_in :project_name, with: "bam!"
+
+    click_button 'Update Project'
+
+    expect(page).to have_content "Project was successfully updated"
+    expect(page).to have_content 'bam!'
+  end
+
+  scenario "can delete project from index" do
+
+    bam = Project.new(name: 'bam')
+    bam.save!
+
+    sign_in_user
+    visit projects_path
+
+    click_on "bam"
+
+    within(".well") do
+      click_on "Delete"
+    end
+
+    expect(page).to have_content "Project was successfully deleted"
+    expect(page).not_to have_content "Jon"
+  end
+
+end

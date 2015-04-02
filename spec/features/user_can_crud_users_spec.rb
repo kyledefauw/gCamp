@@ -1,58 +1,90 @@
-require "rails_helper"
+require 'rails_helper'
 
-  feature "User can Create, Read, Update and Delete users with flash messages" do
+feature 'Existing users CRUD users' do
 
-    before do
-      sign_in
-    end
-
-    scenario "User can create users with flash messages" do
-      visit users_path
-      click_on 'New User'
-      within("form") { click_on 'Create User'}
-      expect(page).to have_content("can\'t be blank")
-
-      fill_in 'First name', with: 'Keller'
-      fill_in 'Last name', with: 'Williams'
-      fill_in 'Email', with: 'keller@kellerwilliams.net'
-      fill_in 'Password', with: 'freaker'
-      fill_in 'Password confirmation', with: 'freaker'
-      click_on 'Create User'
-
-      expect(page).to have_content "Keller Williams"
-      expect(page).to have_content "User was successfully created"
-    end
-
-    scenario "User can read users with flash messages" do
-      visit user_path(@user1)
-
-      expect(page).to have_content 'Jeff'
-      expect(page).to have_content 'jeff@austin.com'
-    end
-
-    scenario "User can update users with flash messages" do
-      visit user_path(@user1)
-      click_on 'Edit'
-      fill_in 'Email', with: 'jeff.austin@gmail.com'
-      click_on 'Update User'
-      expect(page).to have_content('User was successfully updated')
-      expect(page).to have_content('jeff.austin@gmail.com')
-    end
-
-    scenario "User can delete users with flash messages" do
-      visit users_path
-      click_on "Edit"
-      click_on 'Delete'
-
-      expect(page).not_to have_content "jeff@austin.com"
-    end
+  before :each do
+    User.destroy_all
   end
 
-  feature "User can see at least one validation message displayed" do
-    scenario "validation message pops up when no data is filled in" do
-      visit new_user_path
-        fill_in "First name", with: 'Sweet!'
-        click_on 'Create User'
-        expect(page).to have_content("name can\'t be blank")
-    end
+  scenario "index lists all users with name, and email" do
+
+    sign_in_user
+    expect(current_path).to eq projects_path
+
+    visit users_path
+    expect(page).to have_content "Users"
+    expect(page).to have_content "George"
+    expect(page).to have_content "Clinton"
+    expect(page).to have_content "parliament@mothershipconnection.com"
   end
+
+  scenario "can make a new user from the new user form" do
+
+    sign_in_user
+    visit (users_path)
+    click_link 'New User'
+
+    expect(current_path).to eq new_user_path
+
+    fill_in :user_first_name, with: 'Jon'
+    fill_in :user_last_name, with: 'Bon Jovi'
+    fill_in :user_email, with: 'shotthroughtheheart@youretoolate.com'
+    fill_in :user_password, with: 'livinonaprayer'
+    fill_in :user_password_confirmation, with: 'livinonaprayer'
+
+    click_button 'Create User'
+
+    expect(page).to have_content 'shotthroughtheheart@youretoolate.com'
+  end
+
+  scenario "index links to show via the name" do
+
+    sign_in_user
+    visit users_path
+
+    within('table') do
+      click_link 'George'
+    end
+    expect(page).to have_content 'parliament@mothershipconnection.com'
+  end
+
+  scenario "can edit user" do
+    sign_in_user
+    visit users_path
+
+    within('table') do
+      click_link "George"
+    end
+    
+    click_link "Edit"
+
+    expect(page).to have_content "Edit User"
+
+    fill_in :user_first_name, with: "George S."
+    fill_in :user_password, with: "bringthafunk"
+    fill_in :user_password_confirmation, with: "bringthafunk"
+    click_button 'Update User'
+
+    expect(page).to have_content "User was successfully updated"
+    expect(page).to have_content 'George S.'
+  end
+
+  scenario "can delete user from index" do
+    user = User.new(first_name: 'Jon',
+    last_name: 'Bon Jovi',
+    email: 'shotthroughtheheart@youretoolate.com',
+    password: 'livinonaprayer',
+    password_confirmation: 'livinonaprayer')
+    user.save!
+
+    sign_in_user
+    visit users_path
+
+    click_on "Jon"
+    click_on "Edit"
+    click_on "Delete"
+
+    expect(page).to have_content "You must sign in"
+  end
+
+end

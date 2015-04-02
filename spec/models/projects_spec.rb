@@ -1,16 +1,8 @@
-require 'rails_helper'
-
 describe Project do
-
-  before do
-    @project = Project.create!(name: "gSchool")
+  it "requires a name" do
+    project = Project.new
+    expect(project).not_to be_valid
+    project.name = "This is a project"
+    expect(project).to be_valid
   end
-
-  it "Projects are not valid without a name" do
-    @project.update_attributes(name: "")
-    @project.valid?
-    expect(@project.errors[:name]).to include("can't be blank")
-  end
-
-
 end
